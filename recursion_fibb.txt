@@ -1,0 +1,34 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+int numbers(int a, int b, int n){
+    if(n==0){
+        return 0;
+    }
+    
+    int c=a+b;
+    cout<<c<<endl;
+    numbers(b,c,n-1);
+}
+
+int main() {
+    int n = 8;
+    int a=0; 
+    int b=1;
+    cin>>a;
+    cin>>b;
+    numbers(a, b, n-2);
+    
+    
+
+    return 0;
+}

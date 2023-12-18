@@ -1,0 +1,94 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+struct Node{
+    int data;
+    Node *left;
+    Node *right;
+};
+Node *newNode(int val){
+    Node *temp1=new Node;
+    temp1->data=val;
+    temp1->left=NULL;
+    temp1->right=NULL;
+    
+    return temp1;
+}
+void inorder_traversal(Node *head) {
+    if (head) {
+        inorder_traversal(head->left);
+        cout << head->data << " "<<endl;
+        inorder_traversal(head->right);
+    }
+}
+void preorder_traversal(Node *head) {
+    if (head) {
+        cout << head->data << " "<<endl;
+        inorder_traversal(head->left);
+        inorder_traversal(head->right);
+    }
+}
+void postoreder_traversal(Node *head) {
+    if (head) {
+        inorder_traversal(head->left);
+        inorder_traversal(head->right);
+        cout << head->data << " ";
+    }
+}
+//level order treverhsal 
+void printlevelOrder(Node *head) {
+    if (head == NULL) {
+        return;
+    }
+    queue<Node *> q;
+    q.push(head);
+
+    while (!q.empty()) {
+        Node* node = q.front();
+        q.pop();
+        //if(node->data%2==1)
+        //if(node->left || node->right)
+        //if(!node->left && !node->right)
+            cout << node->data << " ";
+        // enqueue left child
+        if (node->left != NULL) {
+            q.push(node->left);
+        }
+        // enqueue right child
+        if (node->right != NULL) {
+            q.push(node->right);
+        }
+        
+    }
+}
+int main()
+{
+    Node *temp=NULL;
+    Node *head=NULL;
+    temp=newNode(5);
+    temp->left=newNode(6);
+    temp->left->left=newNode(8);
+    temp->right=newNode(9);
+    temp->right->right=newNode(9);
+    temp->right->right->left=newNode(1);
+    temp->right->right->right=newNode(2);
+    
+    cout << "Inorder traversal:" << endl;
+    inorder_traversal(temp);
+    
+    cout << "Inorder traversal:" << endl;
+    preorder_traversal(temp);
+    
+    cout << "Inorder traversal:" << endl;
+    postoreder_traversal(temp);
+    
+    
+    cout << "level order traversal:" << endl;
+    printlevelOrder(temp);
+    
+    /*cout << "Reversed linked list:" << endl;
+    temp = reverse_list(temp);
+    treversal_list(temp);*/
+     return 0;
+}

@@ -1,0 +1,53 @@
+
+
+#include <iostream>
+
+using namespace std;
+struct Node{
+    int data;
+    Node *next;
+};
+
+Node *newNode(int val){
+    Node *temp1=new Node;
+    temp1->data=val;
+    temp1->next=NULL;
+    
+    return temp1;
+}
+void treversal_list(Node* head){
+    while(head){
+        cout<<head->data<<endl;
+        head=head->next;
+    }
+}
+
+Node *reverse_list(Node *head){
+    
+    Node *prev=NULL;
+    Node *temp=NULL;
+    Node *current=head;
+    while(current){
+        temp= current->next;
+        current->next=prev;
+        prev=current;
+        current=temp;
+    }
+    return prev;
+}
+int main()
+{
+    Node *temp=NULL;
+    temp=newNode(5);
+    temp->next=newNode(6);
+    temp->next->next=newNode(8);
+    temp->next->next->next=newNode(9);
+    
+    cout<<"linked list:"<<endl;
+    treversal_list(temp);
+    
+    cout << "Reversed linked list:" << endl;
+    temp = reverse_list(temp);
+    treversal_list(temp);
+     return 0;
+}
